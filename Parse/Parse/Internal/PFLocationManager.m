@@ -106,7 +106,7 @@
 #if TARGET_OS_WATCH
     if ([self.bundle objectForInfoDictionaryKey:@"NSLocationWhenInUseUsageDescription"] != nil) {
         [self.locationManager requestWhenInUseAuthorization];
-    } else {
+    } else if ([self.bundle objectForInfoDictionaryKey:@"NSLocationAlwaysUsageDescription"] != nil) {
         [self.locationManager requestAlwaysAuthorization];
     }
     [self.locationManager requestLocation];
@@ -119,7 +119,7 @@
             if (self.application.applicationState != UIApplicationStateBackground &&
                 [self.bundle objectForInfoDictionaryKey:@"NSLocationWhenInUseUsageDescription"] != nil) {
                 [self.locationManager requestWhenInUseAuthorization];
-            } else {
+            } else if ([self.bundle objectForInfoDictionaryKey:@"NSLocationAlwaysUsageDescription"] != nil) {
                 [self.locationManager requestAlwaysAuthorization];
             }
         };
